@@ -3,6 +3,7 @@ import { useState } from "react";
 function PatientData() {
   const [name, setName] = useState("")
   const [age, setAge] = useState(0)
+  const [contact, setContact] = useState()
   const [birthDate, setbirthDate] = useState("00/00/0000")
   const [address, setAddress] = useState("")
   return (
@@ -21,6 +22,10 @@ function PatientData() {
         <div>
           <p>Idade: {age}</p>
           <input type="number" onChange={(e) => setAge(parseInt(e.target.value))}/>
+        </div>
+        <div>
+          <p>Número para contato com DDD: {contact}</p>
+          <input type="number" onChange={(e) => setContact(e.target.value)}/>
         </div>
         <div>
           <p>Data de nascimento: {birthDate}</p>
