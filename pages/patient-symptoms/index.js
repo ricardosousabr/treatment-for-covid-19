@@ -2,9 +2,14 @@ import { useState } from "react"
 
 function PatientSymptoms() {
   const [symptoms, setSymptoms] = useState(0)
+  const [result, setResult] = useState("")
+  const symptomResults = {
+    moreCommon: "Descançe e beba bastante água, fique de quarentena em casa",
+    lessCommon: "Fique em casa de quarentena e faça o teste de covid-19 o mais rapido possivel",
+    graves: "Va imediatamente ao medico urgente",
+  }
 
   function selectSymptoms(e, gravity) {
-    console.log(symptoms)
     if (e.target.checked) {
       setSymptoms(symptoms + gravity)
     } else (
@@ -12,13 +17,15 @@ function PatientSymptoms() {
     )
   }
 
+  console.log(symptoms)
+
   function symptomPrescription() {
     if (symptoms <= 3 && symptoms >= 1) {
-      alert("Descançe e bebas bastante água")
+      setResult(symptomResults.moreCommon)
     } else if (symptoms >= 3 && symptoms <= 6) {
-      alert("Descançe e se persistirem os sintomas va imediatamente ao medico")
-    } else if (symptoms > 7) {
-      alert("Va imediatamente ao medico")
+      setResult(symptomResults.lessCommon)
+    } else if (symptoms >= 7) {
+      setResult(symptomResults.graves)
     }
   }
 
@@ -80,6 +87,9 @@ function PatientSymptoms() {
       </div>
       <div>
         <button onClick={() => symptomPrescription()}>Exibir resultado</button>
+      </div>
+      <div>
+        <p>{result}</p>
       </div>
     </div>
   )
